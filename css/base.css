@@ -1,0 +1,23 @@
+/* сцена: слои окна, зерно, свечение, подсветка */
+
+:root{color-scheme:dark;--cream:#d8cfba;--amber:#ff9b55;--dim:#8d8672;--rain:.55;--fog:.3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0;background:#02070d;overflow:hidden;font-family:'PT Sans Narrow','Arial Narrow',system-ui,sans-serif}
+*{box-sizing:border-box}
+.scene{position:absolute;left:50%;top:50%;width:max(100vw,177.78vh);height:max(56.25vw,100vh);transform:translate(-50%,-50%)}
+.scene>*{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#city{transition:filter 1s}
+#bloom{filter:blur(9px) brightness(1.7) saturate(1.3);mix-blend-mode:screen;opacity:.45}
+#haze{background:linear-gradient(rgba(4,10,18,calc(var(--rain)*.75)),rgba(4,10,18,0) 75%),rgba(120,160,190,calc(var(--fog)*.45))}
+#grain{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay;opacity:.2;animation:gr .6s steps(1) infinite}
+@keyframes gr{0%{background-position:0 0}25%{background-position:-60px 40px}50%{background-position:30px -80px}75%{background-position:-90px -30px}}
+#vig{background:radial-gradient(ellipse at 55% 50%,transparent 45%,rgba(0,4,10,.65))}
+#flash{background:radial-gradient(circle at var(--bx,50%) 25%,rgba(215,232,255,.95),rgba(120,160,255,.4) 55%,rgba(120,160,255,0));mix-blend-mode:screen;opacity:0}
+#glow{animation:pulse 7s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.7}}
+.cur{animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.steam path{fill:none;stroke:#cfe6ff;stroke-opacity:.4;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:40;animation:steam 4.5s ease-in-out infinite}
+.steam path+path{animation-delay:-2s}
+@keyframes steam{0%{stroke-dashoffset:40;opacity:0}40%{opacity:1}100%{stroke-dashoffset:-40;opacity:0}}
+@media(prefers-reduced-motion:reduce){.steam path{animation:none}}

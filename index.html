@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lo‑Fi радио «Дождливая ночь»</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌧%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/deck.css">
+</head>
+<body>
+<div class="scene">
+ <canvas id="city"></canvas>
+ <canvas id="bloom"></canvas>
+ <div id="haze"></div>
+ <canvas id="rain"></canvas>
+ <svg id="room" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+  <defs>
+   <linearGradient id="cur" x1="0" x2="1"><stop offset="0" stop-color="#061a20"/><stop offset=".6" stop-color="#0c3038"/><stop offset="1" stop-color="#0a2128"/></linearGradient>
+   <linearGradient id="bl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b8484f"/><stop offset="1" stop-color="#6d2c3b"/></linearGradient>
+   <linearGradient id="dk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16324a"/><stop offset="1" stop-color="#091723"/></linearGradient>
+   <linearGradient id="sc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fe0ff"/><stop offset="1" stop-color="#1b6db0"/></linearGradient>
+   <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1.5" fill="#001a30" opacity=".4"/></pattern><linearGradient id="sc2" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#2f86b8"/><stop offset="1" stop-color="#123860"/></linearGradient><radialGradient id="vg" cx=".5" cy=".5" r=".7"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient><radialGradient id="gl"><stop offset="0" stop-color="#6fd0ff" stop-opacity=".45"/><stop offset="1" stop-color="#6fd0ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <path fill="#06121e" fill-rule="evenodd" d="M0 0H1600V900H0Z M245 75H1415V700H245Z"/>
+  <path d="M245 75H1415V700H245Z" fill="none" stroke="#0a1b2b" stroke-width="14"/>
+  <rect x="778" y="75" width="28" height="625" fill="#071522"/><rect x="778" y="75" width="3" height="625" fill="#16324a"/>
+  <rect x="245" y="548" width="1170" height="34" fill="#091a29"/><rect x="245" y="548" width="1170" height="3" fill="#1a3a54"/>
+  <path d="M0 0L1600 0" stroke="none"/>
+  <polygon points="245,75 700,75 420,700 245,700" fill="#fff" opacity=".025"/>
+  <path d="M40 75H255C292 200 288 380 252 520C242 565 247 640 226 705H40Z" fill="url(#cur)"/>
+  <path d="M120 80C150 250 140 450 120 700M190 80C215 260 205 460 195 700" stroke="#000" stroke-opacity=".25" stroke-width="6" fill="none"/>
+  <rect x="30" y="68" width="250" height="8" rx="4" fill="#0a1a24"/><path d="M44 566C130 556 200 556 250 548L252 568C200 580 130 584 44 592Z" fill="#0f3b45"/><path d="M85 80C112 250 104 420 88 560M165 80C190 250 180 420 172 556" stroke="#2a6470" stroke-opacity=".35" stroke-width="5" fill="none"/>
+  <path d="M0 690L430 700L990 862L0 900Z" fill="#0b1b2a"/>
+  <path d="M0 745C200 705 420 722 600 772C800 822 950 850 990 864C700 888 300 878 0 890Z" fill="url(#bl)"/>
+  <path d="M20 752C210 716 410 730 590 778" stroke="#e0707a" stroke-opacity=".35" stroke-width="5" fill="none"/><path d="M0 790C180 760 380 780 560 828M90 850C250 820 430 840 640 868" stroke="#2a0d18" stroke-opacity=".45" stroke-width="7" fill="none"/>
+  <path d="M960 765L1600 738V900H950Z" fill="url(#dk)"/><path d="M960 765L1600 738" stroke="#2c5877" stroke-width="3"/>
+  <ellipse id="glow" cx="1230" cy="640" rx="360" ry="260" fill="url(#gl)"/>
+  <path d="M1296 470C1385 500 1472 556 1478 612V762C1400 774 1340 774 1290 770Z" fill="#070f18"/>
+  <path d="M1296 470C1385 500 1472 556 1478 612" fill="none" stroke="#1d3d58" stroke-width="3"/>
+  <path d="M1090 492Q1088 478 1104 476L1296 463Q1311 462 1311 477L1300 742Q1299 757 1285 756L1094 722Q1079 719 1078 705Z" fill="#101e2c" stroke="#244861" stroke-width="3"/>
+  <path id="scr" d="M1120 514Q1118 503 1131 502L1272 495Q1285 494 1285 506L1281 664Q1281 675 1269 674L1124 658Q1113 657 1112 646Z" fill="url(#sc2)"/>
+  <g fill="none" stroke="#ffd3ea" stroke-width="2.5" stroke-linejoin="round"><polyline points="1150,640 1190,570 1215,610 1260,540 1240,600 1200,640 1215,560 1170,600 1150,640"/><polyline points="1190,570 1235,545 1215,610"/></g>
+  <use href="#scr" fill="url(#vg)"/><use href="#scr" fill="url(#scan)"/><path d="M1124 516L1196 510L1150 600L1120 600Z" fill="#fff" opacity=".06"/><rect class="cur" x="1128" y="640" width="9" height="3" fill="#ffd3ea"/><circle cx="1183" cy="702" r="7" fill="#6d8598"/>
+  <polygon points="1130,745 1240,742 1262,775 1115,780" fill="#0a1824"/>
+  <polygon points="958,762 1150,748 1184,782 975,802" fill="#9db1c3" opacity=".85"/>
+  <path d="M968 774L1156 760M972 784L1168 770M978 794L1176 780" stroke="#2a4155" stroke-width="5" stroke-dasharray="4 3" opacity=".7"/>
+  <ellipse cx="1200" cy="792" rx="34" ry="11" fill="#8da3b5"/><rect x="1345" y="786" width="165" height="34" rx="4" fill="#0b1a28" stroke="#274a66"/>
+ <g transform="translate(1318 772) scale(.9)"><ellipse cy="26" rx="26" ry="6" fill="#000" opacity=".35"/><path d="M-20 -22H20V16Q20 26 10 26H-10Q-20 26 -20 16Z" fill="#b8484f"/><path d="M20 -12h8q10 0 10 12t-10 12h-8" fill="none" stroke="#b8484f" stroke-width="5"/><ellipse cy="-22" rx="20" ry="5" fill="#3a1418"/><g class="steam"><path d="M-6 -30C-14 -48 4 -52 -4 -70"/><path d="M6 -30C0 -44 14 -54 8 -68"/></g></g>
+ </svg>
+ <div id="grain"></div>
+ <div id="vig"></div>
+ <div id="flash"></div>
+</div>
+
+<main class="deck" id="deck">
+ <section class="player">
+  <svg class="tape" viewBox="0 0 120 64" aria-hidden="true"><rect x="1" y="1" width="118" height="62" rx="5" fill="#2b2720"/><rect x="9" y="7" width="102" height="34" rx="3" fill="#cdbf9f"/><rect x="14" y="11" width="92" height="12" fill="#e9dec3"/><rect x="26" y="45" width="68" height="14" rx="3" fill="#15120e"/><circle cx="40" cy="30" r="10" fill="#15120e"/><circle cx="80" cy="30" r="10" fill="#15120e"/><g class="reel"><path d="M40 21v18M31 30h18M33.6 23.6l12.8 12.8M46.4 23.6L33.6 36.4" stroke="#cdbf9f" stroke-width="1.8"/></g><g class="reel"><path d="M80 21v18M71 30h18M73.6 23.6l12.8 12.8M86.4 23.6L73.6 36.4" stroke="#cdbf9f" stroke-width="1.8"/></g></svg>
+  <div class="lcd"><div><b id="tn"></b><span id="ta"></span></div><output id="tc">0:00</output></div>
+  <div class="ctl"><div class="tr"><button class="key" id="prev" aria-label="предыдущий"><svg viewBox="0 0 24 24"><path d="M18 6v12l-9-6zM5 6h2v12H5z"/></svg></button><button class="key big" id="play"></button><button class="key" id="next" aria-label="следующий"><svg viewBox="0 0 24 24"><path d="M6 6v12l9-6zM17 6h2v12h-2z"/></svg></button></div><div class="ks" id="pl"></div></div>
+ </section>
+ <section class="mix">
+  <div class="ks"><button class="key" data-p="clear">ясно</button><button class="key" data-p="drizzle">морось</button><button class="key" data-p="rain">дождь</button><button class="key" data-p="heavy">ливень</button><button class="key" data-p="storm">гроза</button><button class="key" id="bolt" aria-pressed="false">молнии</button></div>
+  <div class="faders" id="faders"></div>
+ </section>
+ <button class="tog" id="tog" aria-expanded="true">свернуть ▾</button>
+</main>
+
+<script src="js/util.js"></script>
+<script src="js/tracks.js"></script>
+<script src="js/city.js"></script>
+<script src="js/weather.js"></script>
+<script src="js/rain.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/player.js"></script>
+</body>
+</html>

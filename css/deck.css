@@ -1,0 +1,34 @@
+/* пульт: кассета, дисплей, клавиши, фейдеры */
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.deck{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(1000px,calc(100vw - 16px));padding:16px 20px calc(16px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:14px 26px;border-radius:12px 12px 0 0;background:linear-gradient(#272b32,#17191e);box-shadow:inset 0 1px 0 #3d424b,0 -24px 60px #000a}
+.tog{position:absolute;top:-28px;right:20px;height:28px;padding:0 14px;border:0;border-radius:8px 8px 0 0;background:#272b32;color:var(--cream);font-size:14px;box-shadow:inset 0 1px 0 #3d424b}
+.player{display:grid;grid-template-columns:auto 1fr;gap:12px;align-content:start}
+.ctl{grid-column:1/-1;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.mix{display:grid;gap:10px;align-content:start}
+.tape{width:104px;align-self:stretch}
+.reel{transform-box:fill-box;transform-origin:center}
+.playing .reel{animation:spin 2.4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lcd{display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0;padding:8px 14px;background:#120d07;border:2px solid #060507;border-radius:4px;box-shadow:inset 0 2px 10px #000;color:#ffae6b;font:400 15px 'Pixelify Sans',monospace;text-shadow:0 0 6px #ff9b5566}
+.lcd b{display:block;font-weight:400;font-size:18px;white-space:nowrap}.lcd span{opacity:.65;font-size:13px}
+.tr,.ks{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.key{position:relative;min-width:44px;height:40px;padding:0 12px;border:0;border-radius:3px;background:linear-gradient(#ddd4bf,#b6ab92);color:#2a2418;font:700 14px 'PT Sans Narrow','Arial Narrow',sans-serif;box-shadow:0 3px 0 #6b6250,0 5px 8px #0009;transition:transform .08s,box-shadow .08s}
+.tr .key{height:44px;min-width:48px}.tr .big{min-width:68px}
+.key svg{width:16px;height:16px;fill:currentColor;display:block;margin:auto}
+.key.on,.key:active{transform:translateY(2px);background:linear-gradient(#bdb299,#cfc5ac);box-shadow:0 1px 0 #6b6250,0 2px 4px #0009}
+.key.on::after{content:'';position:absolute;top:4px;right:4px;width:5px;height:5px;border-radius:50%;background:var(--amber);box-shadow:0 0 6px var(--amber)}
+.faders{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;padding-top:6px;border-top:1px solid #0a0b0e;box-shadow:0 -1px 0 #2f343c}
+.fd{display:grid;grid-template-columns:52px 1fr 24px;align-items:center;gap:10px;height:40px;font-size:14px;color:var(--cream)}
+.fd output{text-align:right;color:var(--amber);font:400 13px 'Pixelify Sans',monospace}
+.fd input{-webkit-appearance:none;appearance:none;width:100%;height:40px;margin:0;background:repeating-linear-gradient(90deg,#4a4f58 0 1px,transparent 1px 10%) 0 100%/100% 5px no-repeat;cursor:pointer}
+.fd input::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,#c9772f var(--v,0%),#08090c var(--v,0%));box-shadow:inset 0 1px 2px #000,0 1px 0 #3a3f48}
+.fd input::-moz-range-track{height:6px;border-radius:3px;background:#08090c;box-shadow:inset 0 1px 2px #000}
+.fd input::-moz-range-progress{height:6px;border-radius:3px;background:#c9772f}
+.fd input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:34px;margin-top:-14px;border:0;border-radius:3px;background:linear-gradient(90deg,transparent 10px,#2a2418 10px 12px,transparent 12px),linear-gradient(#ddd4bf,#b6ab92);box-shadow:0 3px 0 #6b6250,0 5px 8px #0009}
+.fd input::-moz-range-thumb{width:22px;height:34px;border:0;border-radius:3px;background:linear-gradient(90deg,transparent 10px,#2a2418 10px 12px,transparent 12px),linear-gradient(#ddd4bf,#b6ab92);box-shadow:0 3px 0 #6b6250,0 5px 8px #0009}
+.deck.min{grid-template-columns:1fr}
+.deck.min .player{display:flex;align-items:center;gap:12px}.deck.min .lcd{flex:1}.deck.min .ctl{display:contents}
+.deck.min .tape,.deck.min #pl,.deck.min .mix{display:none}
+@media(max-width:720px){.deck{grid-template-columns:1fr;gap:12px;padding:14px 12px calc(14px + env(safe-area-inset-bottom,0px))}.tape{display:none}.player{grid-template-columns:1fr}.tog{right:12px}}
+@media(max-width:480px){.faders{grid-template-columns:1fr}}
